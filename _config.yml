@@ -352,8 +352,12 @@ defaults:
       layout: single
   # _projects
   - scope:
-      path: ""
+      path: ""  
       type: projects
     values:
       layout: single
+      show_date: false
+      share: false  
+      permalinks: false
+      
 

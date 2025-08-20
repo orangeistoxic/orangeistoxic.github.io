@@ -6,21 +6,26 @@ search: false
 // main css in /_sass/minimal-mistakes/_pages.scss
 .page {
     .page__content {
-
         img {
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
 
+        /* 統一文字字級 */
         p,
         li,
         dl {
             font-size: 0.9em;
         }
+
+        /* 保證 li 裡面的段落不會再被縮小一次 */
+        li>p {
+            font-size: inherit;
+            margin: 0; // 讓清單裡的段落不會額外加大間距
+        }
     }
 }
-
 // for some reason, screen readers will show up on the page
 // so i hide them with this class
 .sr-only {

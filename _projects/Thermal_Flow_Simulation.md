@@ -1,6 +1,6 @@
 ---
 header:
-    teaser: /assets/thermal_flow/poster_3.png
+    teaser: "/assets/thermal_flow/poster_3.png"
 
 title: Thermal Flow Simulation
 classes: wide
@@ -84,8 +84,8 @@ classes: wide
 - 我們模擬了在不同風速下的散熱結果，下圖是一個時間對上該時刻最高溫度的數據圖，可以明顯觀察到散熱的風速越快，溫度趨於穩態的速度也越快，穩態的溫度也越低。
 - 但是從表格的風速是等距上升，但穩態溫度卻沒有等距下降的特點可以發現，風速對於散熱的效益會逐漸降低。
 
-![image](/assets/thermal_flow/Poster_2.png){: width="50%" }
-![image](/assets/thermal_flow/Poster_3.png){: width="50%" }
+![image](/assets/thermal_flow/poster_2.png){: width="50%" }
+![image](/assets/thermal_flow/poster_3.png){: width="50%" }
 
 - 這是在 $$ h=41.59 \; (v = 1.5) $$ 時在不同時間下的溫度截面
 

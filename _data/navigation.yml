@@ -10,5 +10,7 @@ main:
   #   url: /collection-archive/
   - title: "Projects"
     url: /projects/
-  - title: "Sitemap"
-    url: /sitemap/
+  
+  # - title: "Sitemap"
+  #   url: /sitemap/
+  # (暫時停用)

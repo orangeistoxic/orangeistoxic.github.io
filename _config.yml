@@ -330,7 +330,7 @@ defaults:
       type: posts
     values:
       show_date: true
-      layout: single
+      layout: archive # post 用 archive layout
       author_profile: false
       read_time: false
       comments: false # true
@@ -355,7 +355,8 @@ defaults:
       path: ""  
       type: projects
     values:
-      layout: single
+      layout: single # projects 用 single layout
+      classes: wide
       show_date: false
       share: false  
       permalinks: false

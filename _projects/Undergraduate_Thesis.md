@@ -3,7 +3,7 @@ header:
     teaser: "/assets/undergrad_thesis/P4_c_tts2.png"
 
 title: Undergraduate Thesis 
-classes: wide
+
 
 
 ---

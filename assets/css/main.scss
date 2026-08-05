@@ -1,29 +1,80 @@
 ---
-//Only the main Sass file needs front matter (the dashes are enough)
+# Only the main Sass file needs front matter (the dashes are enough)
 search: false
 ---
 
-// main css in /_sass/minimal-mistakes/_pages.scss
-.page {
-    .page__content {
-        img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-        }
+@charset "utf-8";
 
-        /* 統一文字字級 */
-        p,
-        li,
-        dl {
-            font-size: 0.9em;
-        }
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
 
-        /* 保證 li 裡面的段落不會再被縮小一次 */
-        li>p {
-            font-size: inherit;
-            margin: 0; // 讓清單裡的段落不會額外加大間距
-        }
+// Styles applied only to posts using postlayout.
+.post-layout {
+    .text-center {
+        text-align: center;
+        text-indent: 0;
+    }
+
+    .post-layout__header {
+        margin-bottom: 0;
+    }
+
+    .post-layout__title {
+        margin: 0;
+        border-bottom: 0;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    .post-layout__date {
+        display: block;
+        margin-top: 0.65rem;
+        color: $muted-text-color;
+        font-size: 0.78rem;
+        letter-spacing: 0.06em;
+    }
+
+    .post-layout__divider {
+        height: 1px;
+        margin: 1.4rem 0 2.2rem;
+        border: 0;
+        background: $border-color;
+    }
+
+    // Indent regular prose by two character widths. Keep this on direct
+    // children so paragraphs inside lists and other components are unchanged.
+    > p {
+        margin-block: 0 1.2em;
+        text-indent: 0;
+    }
+
+    // Image paragraphs are centered automatically. Mark the uncommon images
+    // embedded in prose as .inline-image so their surrounding text stays left-aligned.
+    > p:has(> img):not(:has(> img.inline-image)) {
+        text-align: center;
+        text-indent: 0;
+    }
+
+    img {
+        display: inline-block;
+        margin-inline: 0.25rem;
+        vertical-align: middle;
+        border-radius: 8px;
+    }
+
+    /* 統一文字字級 */
+    p,
+    li,
+    dl {
+        font-size: 1.05em;
+        line-height: 1.3em;
+    }
+
+    /* 保證 li 裡面的段落不會再被縮小一次 */
+    li>p {
+        font-size: inherit;
+        margin: 0; // 讓清單裡的段落不會額外加大間距
     }
 }
 // for some reason, screen readers will show up on the page
@@ -45,10 +96,95 @@ search: false
     padding: 4px;
     border-radius: 4px;
 }
+/* Home post index
+   ========================================================================== */
 
+#main.post-index {
+    max-width: 850px;
+    padding-inline: clamp(1.25rem, 4vw, 3rem);
+    padding-block: clamp(1.5rem, 4vw, 4rem);
+}
 
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.25rem) clamp(0.9rem, 2vw, 1.5rem);
 
-@charset "utf-8";
+    @media (max-width: 700px) {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
-@import "minimal-mistakes"; // main partials
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.post-card {
+    min-width: 0;
+    margin: 0;
+}
+
+.post-card__link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+
+    &:visited {
+        color: inherit;
+    }
+
+    &:hover {
+        color: inherit;
+
+        .post-card__image img {
+            transform: scale(1.025);
+        }
+
+        .post-card__title {
+            color: $primary-color;
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid $primary-color;
+        outline-offset: 0.4rem;
+    }
+}
+
+.post-card__image {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: mix(#000, $background-color, 8%);
+    border-radius: 14px;
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 220ms ease;
+    }
+}
+
+.post-card__body {
+    padding-top: 0.9rem;
+}
+
+.post-card__title {
+    margin: 0;
+    color: $text-color;
+    font-family: $sans-serif;
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
+    font-weight: 600;
+    line-height: 1.35;
+    transition: color 160ms ease;
+}
+
+.post-card__date {
+    display: block;
+    margin-top: 0.4rem;
+    color: $muted-text-color;
+    font-family: $sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+}

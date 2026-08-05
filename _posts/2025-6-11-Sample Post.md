@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: postlayout
 
 header:
     teaser: /assets/images/miscellaneous/cinema.png

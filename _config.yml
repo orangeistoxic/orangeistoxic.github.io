@@ -237,7 +237,7 @@ timezone: Asia/Taipei # https://en.wikipedia.org/wiki/List_of_tz_database_time_z
 
 
 # Pagination with jekyll-paginate
-paginate: 5 # amount of posts to show
+paginate: 6 # amount of posts to show; even number keeps the two-column home grid balanced
 paginate_path: /page:num/
 
 # Pagination with jekyll-paginate-v2
@@ -330,7 +330,7 @@ defaults:
       type: posts
     values:
       show_date: true
-      layout: archive # post 用 archive layout
+      layout: postlayout # posts 繼承 archive layout
       author_profile: false
       read_time: false
       comments: false # true
@@ -355,10 +355,9 @@ defaults:
       path: ""  
       type: projects
     values:
-      layout: single # projects 用 single layout
+      layout: projectlayout # projects 繼承 single layout
       classes: wide
       show_date: false
       share: false  
       permalinks: false
       
-

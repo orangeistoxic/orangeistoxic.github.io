@@ -1,0 +1,20 @@
+{% assign post = include.post %}
+{% assign teaser = post.header.teaser | default: site.teaser %}
+{% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" | strip %}
+
+<article class="post-card" itemscope itemtype="https://schema.org/BlogPosting">
+  <a class="post-card__link" href="{{ post.url | relative_url }}" itemprop="url">
+    {% if teaser %}
+      <div class="post-card__image">
+        <img src="{{ teaser | relative_url }}" alt="" itemprop="image">
+      </div>
+    {% endif %}
+
+    <div class="post-card__body">
+      <h2 class="post-card__title" itemprop="headline">{{ title }}</h2>
+      <time class="post-card__date" datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ post.date | date: "%Y.%m.%d" }}
+      </time>
+    </div>
+  </a>
+</article>

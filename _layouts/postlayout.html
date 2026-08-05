@@ -1,0 +1,16 @@
+---
+layout: archive
+---
+
+<div class="post-layout">
+  <header class="post-layout__header">
+    <h1 id="page-title" class="post-layout__title">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</h1>
+    <time class="post-layout__date" datetime="{{ page.date | date_to_xmlschema }}">
+      {{ page.date | date: "%Y 年 %-m 月 %-d 日" }}
+    </time>
+  </header>
+
+  <hr class="post-layout__divider">
+
+  {{ content }}
+</div>

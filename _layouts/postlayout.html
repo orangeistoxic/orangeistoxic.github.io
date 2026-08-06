@@ -8,6 +8,15 @@ layout: archive
     <time class="post-layout__date" datetime="{{ page.date | date_to_xmlschema }}">
       {{ page.date | date: "%Y 年 %-m 月 %-d 日" }}
     </time>
+
+    {% if page.tags and page.tags.size > 0 %}
+      {% assign tags_sorted = page.tags | sort_natural %}
+      <nav class="post-layout__tags" aria-label="Tags">
+        {% for tag in tags_sorted %}
+          <a href="{{ tag | slugify | prepend: '#' | prepend: site.tag_archive.path | relative_url }}" rel="tag">{{ tag }}</a>
+        {% endfor %}
+      </nav>
+    {% endif %}
   </header>
 
   <hr class="post-layout__divider">

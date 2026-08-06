@@ -1,7 +1,65 @@
 ---
-layout: archive
+layout: default
 ---
 
-{{ content }}
+<main id="main" class="tag-index" role="main">
+  <h1 id="page-title" class="tag-index__title">{{ page.title }}</h1>
 
-{% include posts-taxonomy.html taxonomies=site.tags %}
+  {{ content }}
+
+  {% include post-tags-grid.html taxonomies=site.tags %}
+</main>
+
+<script>
+  (() => {
+    const page = document.querySelector(".tag-index");
+    if (!page) return;
+
+    const filters = Array.from(page.querySelectorAll(".tag-index__filter"));
+    const cards = Array.from(page.querySelectorAll(".tag-index__posts .post-card"));
+    const status = page.querySelector(".tag-index__status");
+    const availableTags = new Set(filters.map((filter) => filter.dataset.tag));
+
+    const selectedTag = () => {
+      let tag = "all";
+      try {
+        tag = decodeURIComponent(window.location.hash.slice(1)) || "all";
+      } catch (_) {
+        tag = "all";
+      }
+      return availableTags.has(tag) ? tag : "all";
+    };
+
+    const applyFilter = () => {
+      const tag = selectedTag();
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const cardTags = (card.dataset.tags || "").split(/\s+/);
+        const visible = tag === "all" || cardTags.includes(tag);
+        card.hidden = !visible;
+        if (visible) visibleCount += 1;
+      });
+
+      filters.forEach((filter) => {
+        const active = filter.dataset.tag === tag;
+        filter.classList.toggle("is-active", active);
+        if (active) {
+          filter.setAttribute("aria-current", "true");
+        } else {
+          filter.removeAttribute("aria-current");
+        }
+      });
+
+      const activeFilter = filters.find((filter) => filter.dataset.tag === tag);
+      const label = activeFilter ? activeFilter.dataset.label : "All";
+      status.textContent = `${label} · ${visibleCount}`;
+    };
+
+    filters.forEach((filter) => {
+      filter.addEventListener("click", () => window.setTimeout(applyFilter, 0));
+    });
+    window.addEventListener("hashchange", applyFilter);
+    applyFilter();
+  })();
+</script>

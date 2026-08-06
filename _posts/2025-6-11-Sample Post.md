@@ -3,6 +3,9 @@ layout: postlayout
 
 header:
     teaser: /assets/images/miscellaneous/cinema.png
+
+tags: [Test]
+
 ---
 
 # This is a sample post for testing.

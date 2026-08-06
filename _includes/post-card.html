@@ -2,7 +2,7 @@
 {% assign teaser = post.header.teaser | default: site.teaser %}
 {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" | strip %}
 
-<article class="post-card" itemscope itemtype="https://schema.org/BlogPosting">
+<article class="post-card"{% if include.tags %} data-tags="{{ include.tags | strip | escape }}"{% endif %} itemscope itemtype="https://schema.org/BlogPosting">
   <a class="post-card__link" href="{{ post.url | relative_url }}" itemprop="url">
     {% if teaser %}
       <div class="post-card__image">
